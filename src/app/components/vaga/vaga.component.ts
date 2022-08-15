@@ -6,16 +6,16 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./vaga.component.scss']
 })
 export class VagaComponent implements OnInit {
-  @Input()
-  disponivel: Boolean = true;
+  id: string|null = null;
 
   @Input()
-  id: string|null = null;
+  vaga: any = null;
 
   img: string = '';
 
   ngOnInit(): void {
-    if (this.disponivel) {
+    this.id = this.vaga.id
+    if (this.vaga.disponivel) {
       this.img = 'assets/vaga-disponivel.jpeg';
     } else {
       this.img = 'assets/vaga-ocupada.jpeg';

@@ -8,16 +8,14 @@ import { CalendarModule } from 'primeng/calendar';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { CalendarComponent } from './calendar/calendar.component';
-import { VagaComponent } from './vaga/vaga.component';
-import { VagasComponent } from './vagas/vagas.component';
+import { VagaComponent } from './components/vaga/vaga.component';
+import { VagasComponent } from './components/vagas/vagas.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     VagaComponent,
-    VagasComponent,
-    CalendarComponent
+    VagasComponent
   ],
   imports: [
     BrowserModule,
