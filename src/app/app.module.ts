@@ -10,12 +10,16 @@ import { AppComponent } from './app.component';
 
 import { VagaComponent } from './components/vaga/vaga.component';
 import { VagasComponent } from './components/vagas/vagas.component';
+import { ModalOptionsComponent } from './components/modal-options/modal-options.component';
+import { ModalOptionComponent } from './components/modal-options/modal-option/modal-option.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     VagaComponent,
-    VagasComponent
+    VagasComponent,
+    ModalOptionsComponent,
+    ModalOptionComponent
   ],
   imports: [
     BrowserModule,

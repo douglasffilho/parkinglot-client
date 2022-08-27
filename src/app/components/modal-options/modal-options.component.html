@@ -1,0 +1,13 @@
+<div class="modal{{modalVisible ? ' show' : ''}}" id="modal-{{id}}">
+  <div id="modal-overlay" class="overlay" (click)="toggleModalVisibility()"></div>
+  <fieldset>
+    <legend>O que deseja fazer?</legend>
+
+    <ng-content></ng-content>
+
+    <div class="actions">
+      <button type="button" (click)="toggleModalVisibility()">Cancel</button>
+      <button type="button" (click)="callback()">Ok</button>
+    </div>
+  </fieldset>
+</div>

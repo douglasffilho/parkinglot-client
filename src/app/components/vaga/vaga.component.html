@@ -1,4 +1,11 @@
-<div class="vaga">
-  <img [src]="img" />
-  <p class="lot-number">{{vaga.number}}</p>
+<div>
+  <div class="{{!vaga.car ? 'lot' : 'ocuppied lot'}}" (click)="modalOptions.toggleModalVisibility()">
+    <img [src]="img" />
+    <p class="lot-number">{{vaga.number}}</p>
+  </div>
+
+  <modal-options [id]="id" #modalOptions (onSelect)="selectedOption($event)">
+    <modal-option value="MOVE">Mudar o carro de vaga</modal-option>
+    <modal-option value="GETOUT">Ir embora</modal-option>
+  </modal-options>
 </div>
