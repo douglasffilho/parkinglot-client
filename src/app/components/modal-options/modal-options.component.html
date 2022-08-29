@@ -1,4 +1,4 @@
-<div class="modal{{modalVisible ? ' show' : ''}}" id="modal-{{id}}">
+<div class="modal{{modalVisible ? ' show' : ''}} {{enabled ? 'enabled' : 'disabled'}}" id="modal-{{id}}">
   <div id="modal-overlay" class="overlay" (click)="toggleModalVisibility()"></div>
   <fieldset>
     <legend>O que deseja fazer?</legend>

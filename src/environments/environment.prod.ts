@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+
+  lotServiceBaseURL: "http://douglas-parkinglot.herokuapp.com"
 };

@@ -10,6 +10,9 @@ export class ModalOptionsComponent implements AfterViewInit {
   @Input()
   id: string = '';
 
+  @Input()
+  enabled: Boolean = false;
+
   modalVisible: Boolean = false;
 
   modalValue: string = '';
