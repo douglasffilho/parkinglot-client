@@ -12,6 +12,10 @@ import { VagaComponent } from './components/vaga/vaga.component';
 import { VagasComponent } from './components/vagas/vagas.component';
 import { ModalOptionsComponent } from './components/modal-options/modal-options.component';
 import { ModalOptionComponent } from './components/modal-options/modal-option/modal-option.component';
+import { VagasPageComponent } from './pages/vagas-page/vagas-page.component';
+import { CarsPageComponent } from './pages/cars-page/cars-page.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { MenuLinkComponent } from './components/menu/menu-link/menu-link.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +23,11 @@ import { ModalOptionComponent } from './components/modal-options/modal-option/mo
     VagaComponent,
     VagasComponent,
     ModalOptionsComponent,
-    ModalOptionComponent
+    ModalOptionComponent,
+    VagasPageComponent,
+    CarsPageComponent,
+    MenuComponent,
+    MenuLinkComponent
   ],
   imports: [
     BrowserModule,

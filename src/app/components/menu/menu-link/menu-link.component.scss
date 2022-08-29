@@ -1,0 +1,27 @@
+.menu-link {
+  width: 100%;
+  margin-top: 0.5rem;
+
+  a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 1.1rem;
+
+    &:visited,
+    &:focus,
+    &:hover {
+      text-decoration: none;
+      color: #ffffff;
+    }
+
+    &:hover {
+      text-shadow: 2px 2px 8px #000000;
+    }
+  }
+
+  &::marker {
+    display: none;
+  }
+
+  list-style: none;
+}
