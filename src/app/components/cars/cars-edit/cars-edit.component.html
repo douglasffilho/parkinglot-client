@@ -1,0 +1,21 @@
+<div class="cars edit">
+  <form id="carsEditForm">
+    <fieldset>
+      <label for="plate">Placa:</label>
+      <input type="text" id="plate" name="plate" [(ngModel)]="car._plate" autocomplete="off" maxlength="7" />
+    </fieldset>
+
+    <fieldset>
+      <label for="model">Modelo:</label>
+      <input type="text" id="model" name="model" [(ngModel)]="car.model" autocomplete="off" />
+    </fieldset>
+
+    <fieldset>
+      <label for="color">Cor:</label>
+      <select id="color" name="color" [(ngModel)]="car.color">
+        <option *ngFor="let color of colors" [value]="color">{{color}}</option>
+      </select>
+    </fieldset>
+  </form>
+  <button type="button" (click)="save()">Salvar</button>
+</div>

@@ -1,0 +1,41 @@
+.cars {
+  table {
+    display: block;
+    width: 100%;
+    font-size: 1.5rem;
+
+    thead {
+      display: flex;
+      width: 100%;
+      border-bottom: solid 0.1rem #ffffff;
+      flex-direction: row;
+      justify-content: space-around;
+      padding-bottom: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    tbody {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      tr {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        height: 3rem;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #606060;
+        }
+
+        td {
+          text-align: center;
+          width: 33%;
+        }
+      }
+    }
+  }
+}
