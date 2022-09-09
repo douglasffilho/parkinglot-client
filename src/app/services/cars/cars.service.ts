@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of } from 'rxjs';
 import { Car } from 'src/app/model/car';
+import messageSubscribers from 'src/app/subscribers/messageSubscribers';
 import { environment } from '../../../environments/environment';
 
 const baseURL = environment.lotServiceBaseURL;
@@ -32,6 +33,7 @@ export class CarsService {
     .pipe(
       catchError((err) => {
         console.log(err);
+        messageSubscribers.publish({ message: err.error.logref, type: 'error' });
         return of({});
       })
     );

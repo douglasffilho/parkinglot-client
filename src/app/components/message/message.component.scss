@@ -1,0 +1,39 @@
+.message {
+  display: none;
+  position: fixed;
+  top: 0;
+  width: calc(100% - 1rem);
+  padding: 0.5rem;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+  font-weight: bold;
+
+  i {
+    width: 10%;
+  }
+
+  i, p {
+    margin: 0;
+    align-self: center;
+  }
+}
+
+.info {
+  color: #0864ba;
+  background-color: #4da5f8;
+}
+
+.warning {
+  color: #ba5e08;
+  background-color: #f8944d;
+}
+
+.error {
+  color: #ba0814;
+  background-color: #f84d61;
+}
+
+.show {
+  display: flex;
+}

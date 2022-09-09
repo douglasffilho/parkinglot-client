@@ -1,0 +1,7 @@
+<div class="{{getClass()}}">
+  <i>
+    <mat-icon class="mat-icon-rtl-mirror" fontIcon="info" *ngIf="renderDefault()"></mat-icon>
+    <mat-icon class="mat-icon-rtl-mirror" fontIcon="warning" *ngIf="renderError() || renderWarning()"></mat-icon>
+  </i>
+  <p>{{message}}</p>
+</div>
