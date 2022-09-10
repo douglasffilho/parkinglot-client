@@ -1,11 +1,12 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { Car } from 'src/app/model/car';
 import { CarsService } from 'src/app/services/cars/cars.service';
+import subscribers from 'src/app/subscribers';
 
 @Component({
   selector: 'cars-edit',
   templateUrl: './cars-edit.component.html',
-  styleUrls: ['./cars-edit.component.scss']
+  styleUrls: ['./cars-edit.component.scss'],
 })
 export class CarsEditComponent {
   car: Car = new Car('', '', '');
@@ -19,15 +20,12 @@ export class CarsEditComponent {
     'Preto',
   ];
 
-  @Output()
-  refreshListEvent: EventEmitter<void> = new EventEmitter<void>();
-
   constructor(private carsService: CarsService) {}
 
   save() {
-    this.carsService.saveCar(this.car).subscribe(savedCar => {
+    this.carsService.saveCar(this.car).subscribe((savedCar) => {
       this.car = new Car('', '', '');
-      this.refreshListEvent.emit();
+      subscribers.getCarsListRefreshPublisher().publish();
     });
   }
 }

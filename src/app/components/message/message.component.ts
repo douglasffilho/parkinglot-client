@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslateService } from 'src/app/services/translate/translate.service';
-import messageSubscribers from 'src/app/subscribers/messageSubscribers';
+import subscribers from 'src/app/subscribers';
 
 const CLASS_MAP: any = {
   error: 'error',
@@ -30,7 +30,7 @@ export class MessageComponent {
 
   constructor(private translateService: TranslateService) {
     // this.translateService.setLanguage('pt-BR');
-    messageSubscribers.subscribe(this.notify);
+    subscribers.subscribe('message', this.notify);
   }
 
   notify = (notification: { message: string, type: "info"|"error"|"warning" }) => {
