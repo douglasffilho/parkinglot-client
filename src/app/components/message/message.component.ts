@@ -30,16 +30,21 @@ export class MessageComponent {
 
   constructor(private translateService: TranslateService) {
     // this.translateService.setLanguage('pt-BR');
-    subscribers.subscribe('message', this.notify);
+    subscribers.messageUpdatedEvent.subscribe(this.notify);
   }
 
-  notify = (notification: { message: string, type: "info"|"error"|"warning" }) => {
+  notify = (notification: {
+    message: string;
+    type: 'info' | 'error' | 'warning';
+  }) => {
     this.message = notification.message;
     this.translateMessage();
     this.type = notification.type;
     this.show = true;
-    setTimeout(() => { this.show = false; }, 3000);
-  }
+    setTimeout(() => {
+      this.show = false;
+    }, 3000);
+  };
 
   getClass(): string {
     return `message ${CLASS_MAP[this.type] ?? CLASS_MAP.default}${
@@ -65,9 +70,11 @@ export class MessageComponent {
     if (messageParts.length > 1) {
       const [error, data] = messageParts;
       const dataToReplace = [data];
-      this.message = this.translateService.translate(error, dataToReplace) ?? this.message;
+      this.message =
+        this.translateService.translate(error, dataToReplace) ?? this.message;
     }
 
-    this.message = this.translateService.translate(this.message, []) ?? this.message;
-  }
+    this.message =
+      this.translateService.translate(this.message, []) ?? this.message;
+  };
 }

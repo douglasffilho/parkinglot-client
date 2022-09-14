@@ -1,0 +1,47 @@
+.parking-page {
+  margin: 0rem 1rem;
+  padding: 1rem;
+  color: #ffffff;
+  background-color: #4a4a4a;
+  display: flex;
+  flex-direction: column;
+
+  .search-input input,
+  button {
+    margin: auto;
+    height: 2rem;
+    width: 100%;
+    min-width: 15rem;
+    max-width: 30rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    font-size: 1.1rem;
+  }
+
+  .search-input {
+    width: 100%;
+    display: flex;
+
+    input {
+      margin-bottom: 2rem;
+      margin-right: 0rem;
+    }
+
+    p {
+      display: block;
+      width: 2rem;
+      height: 2rem;
+      font-size: 1.5rem;
+      margin: auto;
+      margin-top: 1rem;
+      margin-left: -2.5rem;
+      cursor: pointer;
+    }
+  }
+
+  button {
+    margin-top: 2rem;
+    height: 3rem;
+    cursor: pointer;
+  }
+}

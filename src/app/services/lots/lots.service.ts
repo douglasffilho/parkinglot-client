@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, of } from 'rxjs';
-import subscribe from 'src/app/subscribers';
+import subscribers from 'src/app/subscribers';
 import { environment } from '../../../environments/environment';
 
 const baseURL = environment.lotServiceBaseURL;
@@ -16,7 +16,7 @@ export class LotsService {
     return this.http.get<any>(`${baseURL}/lots`).pipe(
       catchError((err) => {
         console.error(err.message);
-        subscribe.getMessagePublisher().publish({ message: err.message, type: 'error' });
+        subscribers.messageUpdatedEvent.emit({ message: err.error.logref, type: 'error' });
         return of([]);
       })
     );

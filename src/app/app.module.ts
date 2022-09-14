@@ -20,6 +20,7 @@ import { VagaComponent } from './components/vaga/vaga.component';
 import { VagasComponent } from './components/vagas/vagas.component';
 import { CarsPageComponent } from './pages/cars-page/cars-page.component';
 import { VagasPageComponent } from './pages/vagas-page/vagas-page.component';
+import { ParkingPageComponent } from './pages/parking-page/parking-page.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { VagasPageComponent } from './pages/vagas-page/vagas-page.component';
     CarsListComponent,
     CarsEditComponent,
     MessageComponent,
+    ParkingPageComponent,
   ],
   imports: [
     BrowserModule,

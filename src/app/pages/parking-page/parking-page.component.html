@@ -1,0 +1,8 @@
+<div class="parking-page">
+  <div class="search-input">
+    <input type="text" placeholder="Digite algo..." [(ngModel)]="searchText" (ngModelChange)="onSearchTextChange()" />
+    <p>🔍</p>
+  </div>
+  <cars-list [isEditable]="false"></cars-list>
+  <button (click)="parkCar()">Estacionar</button>
+</div>

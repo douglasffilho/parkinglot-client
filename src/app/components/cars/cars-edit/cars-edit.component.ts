@@ -25,7 +25,7 @@ export class CarsEditComponent {
   save() {
     this.carsService.saveCar(this.car).subscribe((savedCar) => {
       this.car = new Car('', '', '');
-      subscribers.getCarsListRefreshPublisher().publish();
+      subscribers.carsListRefreshEvent.emit();
     });
   }
 }

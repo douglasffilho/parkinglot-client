@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Car } from 'src/app/model/car';
 import { CarsService } from 'src/app/services/cars/cars.service';
 import subscribers from 'src/app/subscribers';
@@ -14,13 +14,22 @@ export class CarsListComponent implements OnInit {
   size: Number = 10;
   filter: string = '';
 
+  @Input()
+  isEditable: boolean = true;
+
   constructor(private carsService: CarsService) {
-    subscribers.subscribe('carsListRefresh', this.refreshList);
+    subscribers.carsListRefreshEvent.subscribe(this.refreshList);
+    subscribers.carsListFilterChangeEvent.subscribe(this.changeFilter);
   }
 
   ngOnInit(): void {
     this.refreshList();
   }
+
+  changeFilter = (newFilterValue: string) => {
+    this.filter = newFilterValue;
+    this.refreshList();
+  };
 
   refreshList = () => {
     this.carsService
@@ -38,5 +47,9 @@ export class CarsListComponent implements OnInit {
       .subscribe(() => {
         this.refreshList();
       });
+  }
+
+  selectCar(car: Car) {
+    subscribers.carSearchSelectedEvent.emit(car);
   }
 }

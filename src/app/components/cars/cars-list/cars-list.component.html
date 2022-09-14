@@ -1,17 +1,21 @@
 <div class="cars">
   <table>
     <thead>
+      <th *ngIf="!isEditable">Selecionar</th>
       <th>Placa</th>
       <th>Modelo</th>
       <th>Cor</th>
-      <th>Ação</th>
+      <th *ngIf="isEditable">Ação</th>
     </thead>
     <tbody>
       <tr *ngFor="let car of carsData">
+        <td *ngIf="!isEditable">
+          <input type="radio" name="select-car" (click)="selectCar(car)" />
+        </td>
         <td>{{car.plate}}</td>
         <td>{{car.model}}</td>
         <td>{{car.color}}</td>
-        <td (click)="deleteCarByPlate(car.plate)">🗑</td>
+        <td (click)="deleteCarByPlate(car.plate)" *ngIf="isEditable">🗑</td>
       </tr>
     </tbody>
   </table>
