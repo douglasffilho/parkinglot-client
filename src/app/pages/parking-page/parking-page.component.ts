@@ -1,5 +1,8 @@
+import { Location } from '@angular/common';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Car } from 'src/app/model/car';
+import { LotsService } from 'src/app/services/lots/lots.service';
 import subscribers from 'src/app/subscribers';
 
 @Component({
@@ -12,7 +15,7 @@ export class ParkingPageComponent {
   searchDebounce!: any;
   car!: Car;
 
-  constructor() {
+  constructor(private lotService: LotsService, private router: Router) {
     subscribers.carSearchSelectedEvent.subscribe(this.selectCar);
   }
 
@@ -33,6 +36,12 @@ export class ParkingPageComponent {
   }
 
   parkCar() {
-    console.log('Estacionado carro: ', this.car);
+    this.lotService
+      .parkCar(this.car)
+      .subscribe((response) => {
+        if (response.updated) {
+          this.router.navigate(['']);
+        }
+      });
   }
 }

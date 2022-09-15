@@ -34,11 +34,11 @@ export class MessageComponent {
   }
 
   notify = (notification: {
+    logref: string,
     message: string;
     type: 'info' | 'error' | 'warning';
   }) => {
-    this.message = notification.message;
-    this.translateMessage();
+    this.translateMessage(notification.logref, notification.message);
     this.type = notification.type;
     this.show = true;
     setTimeout(() => {
@@ -64,8 +64,8 @@ export class MessageComponent {
     return this.type === 'warning';
   }
 
-  translateMessage = () => {
-    const messageParts = this.message.split(':');
+  translateMessage = (logref: string, message: string) => {
+    const messageParts = logref.split(':');
 
     if (messageParts.length > 1) {
       const [error, data] = messageParts;
@@ -75,6 +75,6 @@ export class MessageComponent {
     }
 
     this.message =
-      this.translateService.translate(this.message, []) ?? this.message;
+      this.translateService.translate(message, []) ?? this.message;
   };
 }

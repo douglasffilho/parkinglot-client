@@ -21,7 +21,7 @@ export class TranslateService {
     if (!ref) return null;
     let translation = this.translations[ref];
 
-    if (!translation) return null;
+    if (!translation) return ref;
 
     dataToReplace?.forEach((value, index) => {
       translation = translation.replace(`{{${index}}}`, value);

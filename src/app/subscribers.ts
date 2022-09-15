@@ -5,6 +5,7 @@ export default {
   carsListRefreshEvent: new EventEmitter<any>(),
   carsListFilterChangeEvent: new EventEmitter<string>(),
   messageUpdatedEvent: new EventEmitter<{
+    logref: string,
     message: string;
     type: 'info' | 'error' | 'warning';
   }>(),

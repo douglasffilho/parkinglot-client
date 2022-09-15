@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, of } from 'rxjs';
+import { catchError, map, Observable, of } from 'rxjs';
+import { Car } from 'src/app/model/car';
 import subscribers from 'src/app/subscribers';
 import { environment } from '../../../environments/environment';
 
@@ -16,9 +17,34 @@ export class LotsService {
     return this.http.get<any>(`${baseURL}/lots`).pipe(
       catchError((err) => {
         console.error(err.message);
-        subscribers.messageUpdatedEvent.emit({ message: err.error.logref, type: 'error' });
+        subscribers.messageUpdatedEvent.emit({
+          logref: err?.error?.logref,
+          message: err?.error?.message,
+          type: 'error',
+        });
         return of([]);
       })
     );
+  }
+
+  parkCar(car: Car): Observable<any> {
+    return this.http
+      .post<any>(`${baseURL}/lots`, car)
+      .pipe(
+        catchError((err) => {
+          console.error(err.message);
+          subscribers.messageUpdatedEvent.emit({
+            logref: err?.error?.logref,
+            message: err?.error?.message,
+            type: 'error',
+          });
+          return of({ updated: false });
+        })
+      )
+      .pipe(
+        map((response) => {
+          return { updated: response?.updated ?? true };
+        })
+      );
   }
 }

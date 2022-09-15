@@ -2,6 +2,7 @@
   <div class="{{!vaga.car ? 'lot' : 'ocuppied lot'}}" (click)="modalOptions.toggleModalVisibility()">
     <img [src]="img" />
     <p class="lot-number">{{vaga.number}}</p>
+    <p class="lot-car" *ngIf="!!vaga?.car?.plate">{{vaga.car.plate}}</p>
   </div>
 
   <modal-options [id]="id" #modalOptions (onSelect)="selectedOption($event)" [enabled]="!!vaga?.car?.plate">

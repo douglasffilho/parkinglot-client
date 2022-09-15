@@ -33,7 +33,11 @@ export class CarsService {
     .pipe(
       catchError((err) => {
         console.log(err);
-        subscribers.messageUpdatedEvent.emit({ message: err.error.logref, type: 'error' });
+        subscribers.messageUpdatedEvent.emit({
+          logref: err?.error?.logref,
+          message: err?.error?.message,
+          type: 'error',
+        });
         return of({});
       })
     );
@@ -45,7 +49,11 @@ export class CarsService {
     .pipe(
       catchError((err) => {
         console.log(err);
-        subscribers.messageUpdatedEvent.emit({ message: err.error.logref, type: 'error' });
+        subscribers.messageUpdatedEvent.emit({
+          logref: err?.error?.logref,
+          message: err?.error?.message,
+          type: 'error',
+        });
         return of({});
       })
     );
