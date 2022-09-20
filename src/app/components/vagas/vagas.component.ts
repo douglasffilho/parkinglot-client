@@ -18,7 +18,7 @@ export class VagasComponent implements OnInit {
           vaga.disponivel = !vaga.car;
           return vaga;
         })
-        .sort((v1:any, v2:any) => v1.number - v2.number);
+        .sort((v1: any, v2: any) => v1.number - v2.number);
     });
   }
 }

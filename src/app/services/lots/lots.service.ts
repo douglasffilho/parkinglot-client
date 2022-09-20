@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable, of } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, of } from 'rxjs';
 import { Car } from 'src/app/model/car';
 import subscribers from 'src/app/subscribers';
 import { environment } from '../../../environments/environment';
+import { LotsCacheService } from './lots-cache.service';
 
 const baseURL = environment.lotServiceBaseURL;
 
@@ -11,20 +12,39 @@ const baseURL = environment.lotServiceBaseURL;
   providedIn: 'root',
 })
 export class LotsService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private lotsCacheService: LotsCacheService
+  ) {
+    subscribers.carParkedEvent.subscribe(() => this.lotsCacheService.expireCache());
+  }
 
   getLots(): Observable<any> {
-    return this.http.get<any>(`${baseURL}/lots`).pipe(
-      catchError((err) => {
-        console.error(err.message);
-        subscribers.messageUpdatedEvent.emit({
-          logref: err?.error?.logref,
-          message: err?.error?.message,
-          type: 'error',
-        });
-        return of([]);
-      })
-    );
+    if (this.lotsCacheService.isCached()) {
+      const cachedValue = this.lotsCacheService.getCachedValue();
+      return of(cachedValue);
+    }
+
+    console.log('consulta vagas na API');
+
+    return this.http
+      .get<any>(`${baseURL}/lots`)
+      .pipe(
+        catchError((err) => {
+          console.error(err.message);
+          subscribers.messageUpdatedEvent.emit({
+            logref: err?.error?.logref,
+            message: err?.error?.message,
+            type: 'error',
+          });
+          return of([]);
+        })
+      )
+      .pipe(
+        map((response) => {
+          return this.lotsCacheService.cacheValue(response);
+        })
+      );
   }
 
   parkCar(car: Car): Observable<any> {
@@ -43,6 +63,7 @@ export class LotsService {
       )
       .pipe(
         map((response) => {
+          subscribers.carParkedEvent.emit();
           return { updated: response?.updated ?? true };
         })
       );
