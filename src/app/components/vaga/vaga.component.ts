@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ModalOption } from 'src/app/model/modal-option';
+import { LotsService } from 'src/app/services/lots/lots.service';
 
 @Component({
   selector: 'vaga',
@@ -13,8 +15,27 @@ export class VagaComponent implements OnInit {
 
   img: string = '';
 
-  selectedOption(option: string) {
-    console.log(this.id, option);
+  actionOptions: ModalOption[] = [
+    new ModalOption(
+      'MOVE',
+      'Mudar o carro de vaga',
+      () => {
+        console.log('MOVE ', this.id);
+      }
+    ),
+    new ModalOption(
+      'GETOUT',
+      'Ir embora',
+      () => {
+        this.lotsService.unparkCar(this.vaga.car.plate).subscribe();
+      }
+    )
+  ];
+
+  constructor(private lotsService: LotsService) {}
+
+  selectedOption(optionValue: string) {
+    this.actionOptions.find(option => option.value === optionValue)?.action();
   }
 
   ngOnInit(): void {

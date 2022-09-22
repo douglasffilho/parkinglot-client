@@ -68,4 +68,26 @@ export class LotsService {
         })
       );
   }
+
+  unparkCar(carPlate: string): Observable<any> {
+    return this.http
+      .delete<any>(`${baseURL}/lots/by-car-plate/${carPlate}`)
+      .pipe(
+        catchError((err) => {
+          console.log(err);
+          subscribers.messageUpdatedEvent.emit({
+            logref: err?.error?.logref ?? '',
+            message: err?.error?.message ?? err?.message,
+            type: 'error',
+          });
+          return of({ updated: false });
+        })
+      )
+      .pipe(
+        map((response) => {
+          subscribers.carParkedEvent.emit();
+          return { updated: response?.updated ?? true };
+        })
+      );
+  }
 }

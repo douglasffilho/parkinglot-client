@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import subscribers from 'src/app/subscribers';
 import { LotsService } from '../../services/lots/lots.service';
 
 @Component({
@@ -9,7 +10,11 @@ import { LotsService } from '../../services/lots/lots.service';
 export class VagasComponent implements OnInit {
   vagas: any = [];
 
-  constructor(private lotsService: LotsService) {}
+  constructor(private lotsService: LotsService) {
+    subscribers.carParkedEvent.subscribe(() => {
+      this.ngOnInit();
+    });
+  }
 
   ngOnInit(): void {
     this.lotsService.getLots().subscribe((response) => {

@@ -6,7 +6,10 @@
   </div>
 
   <modal-options [id]="id" #modalOptions (onSelect)="selectedOption($event)" [enabled]="!!vaga?.car?.plate">
-    <modal-option value="MOVE">Mudar o carro de vaga</modal-option>
-    <modal-option value="GETOUT">Ir embora</modal-option>
+    <modal-option
+      *ngFor="let option of actionOptions"
+      [value]="option.value">
+        {{option.label}}
+    </modal-option>
   </modal-options>
 </div>
